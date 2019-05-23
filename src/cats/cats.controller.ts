@@ -1,9 +1,8 @@
 import { Controller, Get, Req, Post, HttpCode, Header, Param, Body } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { Request } from 'express';
-import { CreateCatDto } from './create-cat.dto';
-import { Cat } from '../interfaces/cat.interface';
-import { async } from 'rxjs/internal/scheduler/async';
+import { CreateCatDto } from './dto/create-cat.dto';
+import { Cat } from './interfaces/cat.interface';
 
 @Controller('cats')
 export class CatsController {
