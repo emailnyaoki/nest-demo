@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, HttpException, HttpStatus, UseFilters, UseGuards, SetMetadata } from '@nestjs/common';
+import { Controller, Get, Post, Body, HttpException, HttpStatus, UseFilters, UseGuards, SetMetadata, UseInterceptors } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { Request } from 'express';
 import { CreateCatDto } from './dto/create-cat.dto';
@@ -6,9 +6,10 @@ import { Cat } from './interfaces/cat.interface';
 import { HttpExceptionFilter } from 'src/common/http-exception.filter';
 import { RolesGuard } from 'src/roles.guard';
 import { Roles } from './roles.decorator';
+import { LoggingInterceptor } from 'src/logging.interceptor';
 
 @Controller('cats')
-@UseGuards(RolesGuard)
+@UseInterceptors(LoggingInterceptor)
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
